@@ -1,10 +1,20 @@
-import react.*
-import react.dom.*
+import basket.BasketComponent
+import react.RBuilder
+import react.RComponent
+import react.RProps
+import react.RState
+import react.router.dom.browserRouter
+import react.router.dom.route
+import react.router.dom.switch
 
 class App : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
-        p {
-            +"From react"
+        browserRouter {
+            child(TopBar::class) {}
+            switch {
+                route("/", OverView::class, exact = true)
+                route("/basket", BasketComponent::class)
+            }
         }
     }
 }

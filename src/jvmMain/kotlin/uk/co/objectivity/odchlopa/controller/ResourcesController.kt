@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 import uk.co.objectivity.odchlopa.service.Service
 
-@RestController("/")
+@RestController
 class ResourcesController(var service: Service) {
     @GetMapping("test")
     fun getAny(): String {
