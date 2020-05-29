@@ -41,7 +41,7 @@ class App : RComponent<RProps, AppState>() {
 
     override fun RBuilder.render() {
         h1 {
-            +"Sellers List"
+            +"Lista sprzedawców"
         }
         sellerList {
             sellers = state.sellers

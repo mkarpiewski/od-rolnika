@@ -1,19 +1,23 @@
 import react.*
 import react.dom.*
 
-
 external interface SellerListProps: RProps {
     var sellers: Array<Seller>
 }
 
 class SellerList: RComponent<SellerListProps, RState>() {
     override fun RBuilder.render() {
-        console.log("Sellers List: ");
-        console.log(props.sellers);
         for (seller in props.sellers) {
-            p {
+            div {
                 key = seller.id.toString()
-                +"${seller.id}: ${seller.name}"
+                h2 {
+                    +"${seller.name} (id: ${seller.id})"
+                }
+                p {
+                    b { +"Trochę o mnie: " }
+                    span { +"${seller.aboutMe}" }
+                }
+                hr {}
             }
         }
     }
