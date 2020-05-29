@@ -1,13 +1,20 @@
 package uk.co.objectivity.odchlopa.service
 
+import common.Basket
+import common.Product
 import org.springframework.stereotype.Service
-import uk.co.objectivity.odchlopa.entities.Basket
+import uk.co.objectivity.odchlopa.entities.BasketEntity
+import uk.co.objectivity.odchlopa.mapper.toBasket
 import uk.co.objectivity.odchlopa.repositories.BasketRepository
 
 @Service
 class BasketService(var basketRepository: BasketRepository) {
 
-    fun getBasket() = basketRepository.findAll().firstOrNull()
+    fun getBasketForBuyer(buyerId: Long) = basketRepository.findByBuyerId(buyerId).toBasket()
 
-    fun addBasket(basket: Basket) = basketRepository.save(basket)
+    fun createBasket(buyerId: Long) {
+        basketRepository.save(BasketEntity(buyerId = buyerId, products = mutableListOf()))
+    }
+
+    fun addBasket(basketEntity: BasketEntity) = basketRepository.save(basketEntity)
 }
