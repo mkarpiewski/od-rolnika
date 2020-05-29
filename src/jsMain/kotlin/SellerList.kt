@@ -17,6 +17,7 @@ class SellerList: RComponent<SellerListProps, RState>() {
                     b { +"Trochę o mnie: " }
                     span { +"${seller.aboutMe}" }
                 }
+                p { +"Adres: ${seller.city} ${seller.street} ${seller.homeNumber} ${seller.postCode}" }
                 hr {}
             }
         }
