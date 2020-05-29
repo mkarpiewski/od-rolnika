@@ -1,7 +1,9 @@
 package uk.co.objectivity.odchlopa.service
 
 import org.springframework.stereotype.Component
+import uk.co.objectivity.odchlopa.entities.Basket
 import uk.co.objectivity.odchlopa.entities.Product
+import uk.co.objectivity.odchlopa.repositories.BasketRepository
 import uk.co.objectivity.odchlopa.repositories.ProductRepository
 
 @Component
