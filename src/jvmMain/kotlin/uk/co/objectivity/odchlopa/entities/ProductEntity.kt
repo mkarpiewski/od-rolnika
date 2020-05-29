@@ -7,6 +7,5 @@ import javax.persistence.*
 class ProductEntity(
         var name: String,
         var price: Number,
-        @ManyToMany var baskets: MutableList<BasketEntity>? = null,
         @Id @GeneratedValue var id: Long? = null
 )

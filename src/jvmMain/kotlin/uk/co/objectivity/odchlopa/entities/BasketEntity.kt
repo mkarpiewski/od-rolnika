@@ -7,6 +7,15 @@ import javax.persistence.*
 class BasketEntity(
         @Id @GeneratedValue var id: Long? = null,
         var buyerId: Long,
-        @ManyToMany(mappedBy = "baskets", fetch = FetchType.EAGER, cascade = [CascadeType.PERSIST])
-        var products: MutableList<ProductEntity>
+        @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
+        var items: MutableList<BasketItemEntity>
+)
+
+@Entity
+@Table(name = "basket_item")
+class BasketItemEntity(
+        @Id @GeneratedValue var id: Long? = null,
+        var productId: Long,
+        var quantity: Int,
+        var price: Number
 )
