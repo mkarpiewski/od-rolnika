@@ -1,10 +1,8 @@
 package uk.co.objectivity.odchlopa.controller
 
 import common.Basket
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import common.Product
+import org.springframework.web.bind.annotation.*
 import uk.co.objectivity.odchlopa.entities.BasketEntity
 import uk.co.objectivity.odchlopa.entities.ProductEntity
 import uk.co.objectivity.odchlopa.service.BasketService
@@ -31,4 +29,13 @@ class BasketController(var basketService: BasketService) {
 
         basketService.addBasket(basket)
     }
+
+    @PostMapping("/addProduct")
+    fun addProductToBasked(buyerId: Long, productId: Long): Basket {
+        val userBasket = basketService.getBasketForBuyer(buyerId);
+        userBasket.products.add(Product(productId, name="czosnek", price = 99))
+        basketService.updateBasket(userBasket)
+        return basketService.getBasketForBuyer(buyerId)
+    }
+
 }
