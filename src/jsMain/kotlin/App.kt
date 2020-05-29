@@ -13,6 +13,7 @@ class App : RComponent<RProps, RState>() {
             child(TopBar::class) {}
             switch {
                 route("/", OverView::class, exact = true)
+                route("/seller", SellerComponent::class)
                 route("/basket", BasketComponent::class)
             }
         }
