@@ -1,28 +1,11 @@
-import react.*
-import react.dom.*
-import kotlin.browser.window
-import kotlinx.coroutines.*
-
-data class Seller(
-        val id: Long?,
-        val name: String,
-        val city: String,
-        val street: String,
-        val homeNumber: String,
-        val postCode: String,
-        val aboutMe: String
-)
-
-suspend fun fetchSellers(): Array<Seller> =
-        window.fetch("http://localhost:8080/sellers")
-                .await()
-                .json()
-                .await()
-                .unsafeCast<Array<Seller>>()
-
-external interface AppState: RState {
-    var sellers: Array<Seller>
-}
+import basket.BasketComponent
+import react.RBuilder
+import react.RComponent
+import react.RProps
+import react.RState
+import react.router.dom.browserRouter
+import react.router.dom.route
+import react.router.dom.switch
 
 class App : RComponent<RProps, AppState>() {
 
@@ -40,11 +23,12 @@ class App : RComponent<RProps, AppState>() {
     }
 
     override fun RBuilder.render() {
-        h1 {
-            +"Lista sprzedawców"
-        }
-        sellerList {
-            sellers = state.sellers
+        browserRouter {
+            child(TopBar::class) {}
+            switch {
+                route("/", OverView::class, exact = true)
+                route("/basket", BasketComponent::class)
+            }
         }
     }
 }

@@ -27,13 +27,14 @@ allOpen {
 kotlin {
     jvm() {
         tasks.register<Copy>("copyJsToJvm") {
+            dependsOn(":jsBrowserDistribution")
             eachFile(::println)
             from("$buildDir/distributions")
             include("*.js", "*.css")
             into( "$buildDir/processedResources/jvm/main/static")
         }
         tasks.named("jvmProcessResources") {
-            dependsOn(":jsBrowserDistribution", ":copyJsToJvm")
+            dependsOn(":copyJsToJvm")
         }
 
     }
@@ -84,13 +85,15 @@ kotlin {
                 implementation(kotlin("stdlib-js"))
                 implementation("org.jetbrains:kotlin-react:16.13.1-pre.106-kotlin-1.3.72")
                 implementation("org.jetbrains:kotlin-react-dom:16.13.1-pre.106-kotlin-1.3.72")
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.5")
-                //implementation("org.jetbrains:kotlin-styled:1.0.0-pre.94-kotlin-1.3.70")
-                //implementation(npm("styled-components"))
-                //implementation(npm("inline-style-prefixer"))
-                //implementation(npm("react-share"))
+                implementation("org.jetbrains:kotlin-react-router-dom:5.1.2-pre.106-kotlin-1.3.72")
+                implementation("org.jetbrains:kotlin-css:1.0.0-pre.106-kotlin-1.3.72")
+                implementation("org.jetbrains:kotlin-styled:1.0.0-pre.106-kotlin-1.3.72")
+
                 implementation(npm("react", "16.13.1"))
                 implementation(npm("react-dom", "16.13.1"))
+                implementation(npm("react-router-dom", "5.1.2"))
+                implementation(npm("styled-components"))
+                implementation(npm("inline-style-prefixer"))
             }
         }
 
