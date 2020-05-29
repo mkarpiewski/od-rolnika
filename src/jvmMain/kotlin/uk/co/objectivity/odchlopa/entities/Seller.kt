@@ -1,18 +1,19 @@
 package uk.co.objectivity.odchlopa.entities
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 class Seller(
-        @Id @GeneratedValue var id: Long? = null,
-        var name: String,
+        var name: String
+) {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null
+    var city: String? = null
+    var street: String? = null
+    var homeNumber: String? = null
+    var postCode: String? = null
+    var aboutMe: String? = null
 
-        var city: String,
-        var street: String,
-        var homeNumber: String,
-        var postCode: String,
-
-        var aboutMe: String
-)
+    @OneToMany(cascade = [(CascadeType.ALL)], fetch = FetchType.EAGER, mappedBy = "seller")
+    var products: MutableList<Product> = ArrayList()
+}

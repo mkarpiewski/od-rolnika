@@ -10,4 +10,8 @@ class SellerService (var sellerRepository: SellerRepository) {
     fun getSellers() : Iterable<Seller> {
         return sellerRepository.findAll()
     }
+
+    fun addSeller(name: String) : Long? {
+        return sellerRepository.save(Seller(name)).id
+    }
 }
