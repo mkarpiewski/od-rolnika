@@ -45,6 +45,17 @@ class TopBar : RComponent<RProps, RState>() {
             }
             styledLi {
                 css {
+                    float = Float.left
+                }
+                routeLink("/seller") {
+                    styledDiv {
+                        css(linkButtonStyle)
+                        +"Sprzedawcy"
+                    }
+                }
+            }
+            styledLi {
+                css {
 //                    display = Display.inline
                     float = Float.left
                 }
