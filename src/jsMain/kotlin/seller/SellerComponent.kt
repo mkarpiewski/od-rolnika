@@ -1,3 +1,5 @@
+package seller
+
 import react.*
 import react.dom.*
 import kotlin.browser.window

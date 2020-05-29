@@ -6,6 +6,7 @@ import react.RState
 import react.router.dom.browserRouter
 import react.router.dom.route
 import react.router.dom.switch
+import seller.SellerComponent
 
 class App : RComponent<RProps, RState>() {
     override fun RBuilder.render() {
